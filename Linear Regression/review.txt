@@ -1,0 +1,31 @@
+1.take a quick look at the data structer 
+ figure out the information of the dataset
+ pay special attention to the missing values, data type, categorical attribute, summary of numerical attributes, visualization
+ notice:
+     1.whether the data has been scaled or capped at an interval
+     2.look at the target attribute typically
+     3.the shape of the data visualization
+     
+2.creat a test set,since your brain is highly prone to overfitting
+a common solution to create a stable train/test split even after updating the dataset:
+make sure every instance has a unique and immutable identifier 
+compute a hash of each instance's identifier and put the instance in the test set if the hash is lower than or equal to 20% of the max hash value
+notice:
+  1.it is a random sampling method, but there is a risk of introducing a significant sampling bias
+  2.there is an another method called stratified sampling.
+   here ,you need to pay attention to some important attribute such as income, state......
+  3.if you choose the method called stratified sampling,please make sure every stratum/strata is large enough
+
+3.explore the data and gain more insights
+ First, make sure you have put the test set aside and only explore the training set
+
+4.looking for correlations and experimenting with arrtibute combinations
+ just pearson's r,it only measures linear correlations and miss nonlinear relationships while it has nothing to do with the slope 
+ create new attributer following your intuition
+
+5.Data cleaning
+  1.get rid of the corresponding districts
+  2.get rid of the whole attribute
+  3.set the values to some value(zero, the mean, the median, etc)
+
+6.handing text amd categorical attributes
