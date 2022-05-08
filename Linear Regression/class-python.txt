@@ -1,6 +1,7 @@
 python类的总结
 OOP:Object-Oriented Programming
 两种对象：类，类的实例，类树中两种对象完全等价,各自拥有独立的命名空间。
+继承：实例继承类，类继承类
 #############################################################################
 类树：
 {[C2].x,.y}        {[C3].w,.z}    C2与C1是父类
@@ -27,7 +28,35 @@ OOP:Object-Oriented Programming
   附加在实例上的属性只属于那些实例，附加在类上的属性则由所有子类和实例共享
 ############################################################################# 
 运算符重载：
-  _init_方法的效果就是在创建实例时初始化，可以继承，_init_也成为构造函数
+  __init__方法的效果就是在创建实例时初始化，可以继承，_init_也成为构造函数
+  以双下划线命名的方法(__X__)是特殊的钩子；映射关系固定不变
+  当实例出现在内置运算中时，方法会被自动调用
+  类可以重载绝大多数内置的类型运算
+  默认的运算符重载方法既不存在也不需要
+  运算符重载可以继承
+  __init__会在创建新的实例时被调用
+  __add__会在+表达式时被调用
+  __str__会在打印一个对象的时候被调用
+class ThirdClass(SecondClass):
+  def __init__(self, value):
+    self.data = value
+  def __add__(self, other):
+    return ThirdClass(self.data+other)
+  def __str__(self):
+    return '[ThirdClass: %s]' % self.data
+  def mul(self, other):
+    self.data *= other
+
+a = ThirdClass("abc")
+a.display()    # Current value = "abc"
+print(a)      # [ThirdClass: abc]
+
+b = a + "xyz"
+b.display()    # Current value = abcxyz
+print(b)      # [ThirdClass: abcxyz]
+
+a.mul(3)
+print(a)      # [ThirdClass: abcabcabc] 
 #############################################################################
 类对象提供的默认行为：
   class语句创建类对象并且将其赋值给一个名称
@@ -46,7 +75,6 @@ class FirstClass:
     print(self.data)
 x = FirstClass()
 y = FirstClass()
-  def本质是赋值运算，在class语句内把函数对象赋值给setdata和display，从而产生附加在类FirstClass.setdata和FirstClass.diaplay的属性
   本程序中没有顶层的赋值语句
   到此一共生成了三个对象（三个相连接的命名空间），两个实例对象一开始是空的，data在被setdata赋值前，在内存中不存在。
 x.setdata("King Arthur")
