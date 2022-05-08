@@ -29,3 +29,43 @@ notice:
   3.set the values to some value(zero, the mean, the median, etc)
 
 6.handing text amd categorical attributes
+  goal:convent the catrgories from text to number
+  method:OrdinalEncoder; OneHotEncoder(return a Scipy sparse matrix);
+
+7.Custom Transformers
+  create a class and implement three methods:fit()(returning self), transform(), fit_transform()
+  adding TransformerMixin as a base class to implement three methods
+  adding BaseEstimator as a base class(and avoid *args and **kargs in your constructor) will get two extra methods(get_params() and set_params())
+  
+8.Feature Scaling
+  Note that scaling the target values is generally not required
+  two comman ways to get all attributes to have the same scales: min-max scaling; standardization
+
+9.Transformation Pipelines
+  Ppeline():
+  numerical columns
+  Sequentially apply a list of transforms and a final estimator. 
+  Intermediate steps of the pipeline must be ‘transforms’(implement fit and transform methods)
+  The final estimator only needs to implement fit 
+  The transformers in the pipeline can be cached using memory argument
+  ColumnTransformer():
+  numerical columns and categorical columns
+  
+10.select and train the model
+  training and evaluating on the training set
+  Cross-Validation:
+  A model is trained using K-1 of the folds as training data
+  the resulting model is validated on the remaining part of the data
+  The performance measure reported by k-fold cross-validation is then the average of the values computed in the loop
+  Note that:
+  K-fold cross-validation is to train K models, not one model, but one model for each fold
+  K-fold cross-validation training for the next fold is not based on the previous fold, but reinitializes the model parameters for each fold
+
+11.Fine-Tune Your Model
+  option:
+  fiddle with the hyperparameters manually
+  GridSearchCV
+  Randomized Search
+  
+12.Evaluate Your System on the Test Set
+
