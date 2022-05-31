@@ -1,0 +1,59 @@
+1.
+Two different ways to train linear regression model:
+Using a direct "closed-form" equation that directly computes the model parameters.
+Using an iterative optimization approach called Gradient Descent that gradually tweaks the model parameters to minimize the cost function over the training set.
+
+2.
+GD: Gradient Descent.Start by filling theata with random values(random initialization).Then taking one baby step at a time attempting to decrease the first function.At last, the algorithm converges to a minimun.
+
+Attention: Not all cost functions look like nice,regular bowls.There may be holes,ridges,plateaus,and all sorts of iiregular terrains.
+
+Attention: MSE cost function for a linear regression happen to be a convex function.in fact, the cost function has the shape of a bowl.But it call be an elongated bvowl if the features have very different scales.
+
+Batch GD: The gradient vector contains all the partial derivatives of the cost function.Notice that the partial derivatives involves calculations over the full training set X.This is why the algorithm is called Batch Gradient Descent.It is terribly slow on very large training sets.
+
+Mini-batch GD:Mini-batch GD computes the gradients on small random sets of instances called mini-batches.
+
+Stochastic GD: Stochastic Gradient Descent.Stochastic Gradient Descent picks a random instance in the training set at every step and computes the gradient based only on that single instance.In fact, it decrease only on average.Over time it will end up very close to the minimum,but once it gets there it will continue to bounce around,never settling down.
+
+Attention: SGD has a better chance of finding the global minimun than Batch Gradient Descent.But bad because it means that the algorithm can never settle at the minimum.One solution is to gradually reduce the learning rate(larning schedule) 
+
+3.
+Polynomial Regression:A simple way to do this is to add powers of each feature as new features,then train a linear model on this extended set of features.
+
+4.
+Learning Curves:Make plots of the model's performance on the training set and the validation set as a function of the training size.
+
+5.
+The Bias/Variance Trade-off:
+A model's generalization error can be expressed as the sum of three very different errors.
+
+Bias: Due to wrong assumptions,a high-bias model is most likely to underfit the training data.
+
+Variance: Due to excessive sensitivity to small variations in the training data.
+
+Irreducible error: Due to the noisiness of the data itself.
+
+6.
+Regularized Linear Models:Ridge Regression, Lasso Regression, Elastic Net.
+
+Ridge Regression: Force the learning algorithm to not only fit the data but also keep the model weights as small as possible.
+Note that the bias term theta0 is not regularized.
+Note that the regularization term should only be added to the cost function during training.
+
+Lasso Regression: It tends to eliminate the weights of the least important features.
+
+Elastic Net: It is a middle ground between Ridge Regression and Lasso Regression.
+
+7.
+Early Stopping:
+A way to regularize iterative learning algorithms is to stop training as soon as the validation error reaches a minimum.
+
+8.
+Logistic Regression:
+A binary classifier
+
+9.
+Softmax Regression:
+Multinomial Logistic Regression.When given an instance x,the Softmax Regression model first computes a score for each class k,then estimates the probability of each class by applying the softmax function to the scores.
+Note that each class has its own dedicated parameter vector.All these vectors are typically stored as rows in a parameter matrix.
